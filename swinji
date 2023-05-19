@@ -1,0 +1,87 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import static org.openqa.selenium.support.locators.RelativeLocator.with;
+
+public class swinji {
+
+    public static void main(String[] args) {
+
+        WebDriverManager.chromedriver().setup();
+
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://swinji.azurewebsites.net");
+        driver.manage().window().maximize();
+        driver.findElement(By.id("Email")).sendKeys("testregister@aaa.com");
+        driver.findElement(By.id("inputPassword")).sendKeys("Wakram_123");
+        driver.findElement(By.id("btnLogin")).click();
+        driver.findElement(By.id("btnMyCoursesList")).click();
+        driver.findElement(By.id("btnListAddCourse")).click();
+
+                                                       //Basic info
+        // Course_Name
+
+        driver.findElement(By.xpath("//div[@id='divBasicInfo']//*[@id='txtCourseName']")).sendKeys("java");
+
+        // Select_Subject
+
+        WebElement Subject = driver.findElement(By.xpath("//div[@id='divBasicInfo']//select[@id='courseSubject']"));
+        Select select = new Select(Subject);
+       select.selectByValue("number:1");
+
+       // Select_Grade_Year
+        driver.findElement(By.xpath("//*[@id=\"divBasicInfo\"]/div[2]/div[3]/div[1]/label[1]/em")).click();
+
+        WebElement SelectGradeYear = driver.findElement(By.xpath("//*[@id='courseGrade']"));
+                  Select selectGradeYear = new Select(SelectGradeYear);
+                  select.selectByIndex(1);
+
+        // Select_Course_Teacher
+
+       driver.findElement(By.xpath("//div[@id='divBasicInfo']//*[@id='chkGetSelectedSubjectTeachers']")).click();
+
+        WebElement SelectCourseTeacher  = driver.findElement(By.xpath("//div[@id='divBasicInfo']//*[@id='chkGetSelectedSubjectTeachers']"));
+        Select selectCourseTeacher = new Select(SelectCourseTeacher );
+        select.selectByIndex(1);
+        //Course_Completion_Criteria
+
+        driver.findElement(By.xpath("//*[@id='divBasicInfo']//*[@id='rdVideo']")).click();
+
+                                             //course Sitting
+        //Course Type
+
+        WebElement CourseType = driver.findElement(By.xpath("//*[@id='courseGrade']"));
+        Select selectCourseType = new Select(CourseType);
+        select.selectByIndex(1);
+
+        //Max course capacity
+
+        driver.findElement(By.xpath("//*[@id='divCourseSetting']//*[@id='courseCapacity']")).sendKeys(("4"));
+
+       // Course Location (Optional)
+
+        driver.findElement(By.xpath("//*[@id='divCourseSetting']//*[@id='txtCourseLocationName']")).sendKeys(("cairo"));
+        //Joining Method
+        driver.findElement(By.xpath("//*[@id='divJoiningMethody']/div[2]/label/em")).click();
+        //Enable Lesson Sequential Locking
+        driver.findElement(By.xpath("//*[@id='divJoiningMethody']//*[@id='lblLearningPath']")).click();
+       // Student Learning Objective Achievement Settings
+        driver.findElement(By.xpath("//*[@id='divJoiningMethody']//*[@id='lblInClassAchievementCoverageType']")).click();
+        //Re-Take Course (Optional)
+        driver.findElement(By.xpath("//*[@id='divJoiningMethody']//*[@id='lblResetCourse']")).click();
+
+                                           //Video - Based Course Sitting
+        driver.findElement(By.xpath("//*[@id='divVideoBasedSetting']//*[@id='driver.findElement(By.xpath(']")).click();
+                                                 // Create Button
+        driver.findElement(By.xpath("//*[@id='btnSaveAsDraftCourse']")).click();
+
+
+
+
+
+
+
+    }}
